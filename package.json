@@ -1,7 +1,7 @@
 {
-  "name": "statslife-server",
+  "name": "node-template-server",
   "version": "0.1.0",
-  "description": "Stats Life: Control your proposites",
+  "description": "A basic node ionic2 template",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

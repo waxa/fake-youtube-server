@@ -1,7 +1,3 @@
-# Stats Life
+# Template for starting projects with express, mongo and ionic2 
 
-From https://github.com/waxa/node-restapi-template.git template
-
-### What's is this thing
-
-An app to monitorize your usual task 
+Contains an ionic2 app with a basic singUp, and a node (express) server with mongodb and passport (local) with default routes to login and users

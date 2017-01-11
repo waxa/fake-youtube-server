@@ -1,6 +1,6 @@
 {
-  "name": "Stats Life",
-  "short_name": "statslife",
+  "name": "Your App Name",
+  "short_name": "your-app-name",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

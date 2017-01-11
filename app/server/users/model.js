@@ -8,19 +8,7 @@ function initUser (mongoose) {
 		password: {
       type: String,
       required: true
-    },
-    dayStartHour: {
-      type: Number,
-      default: 0
-    },
-    dayStartMin: {
-      type: Number,
-      default: 0
-    },
-    tasks:[{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Tasks'
-    }]
+    }
 	});
 	mongoose.model('User', userSchema);
 };

@@ -1,11 +1,11 @@
 {
-  "name": "statslife-client",
+  "name": "your-app-name",
   "version": "0.1.0",
   "author": {
     "name": "Víctor <waxa> Lara",
     "email": "waxaman@gmail.com"
   },
-  "description": "Stats Life: Control your proposites",
+  "description": "A node ionic2 template",
   "license": "MIT",
   "homepage": "https://github.com/waxa/statslife",
   "private": true,
