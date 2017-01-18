@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item-group>
+    <ion-item>
+      <ion-label fixed>Username</ion-label>
+      <ion-input type="text" (keyup.enter)="onClickLogin()" [(ngModel)]="user.username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password" (keyup.enter)="onClickLogin()" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button block large [disabled]="!validForm()" (click)="onClickLogin()"> Entrar </button>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button block large (click)="onClickSignUp()"> Registrarse </button>
+    </ion-item>
+
+  </ion-item-group>
+</ion-content>
