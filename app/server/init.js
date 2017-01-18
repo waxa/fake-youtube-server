@@ -16,7 +16,7 @@ require('./users').model(mongoose);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 app.use(cors());
-app.use('/', express.static(__dirname + '/../client/www'));
+// app.use('/', express.static(__dirname + '/../client/www'));
 
 
 //setUp auth with passport

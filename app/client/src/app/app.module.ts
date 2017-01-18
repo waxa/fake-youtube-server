@@ -1,35 +1,42 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { MaterialModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
+import 'hammerjs';
 
-import { LoginPage } from '../pages/login/login';
-import { RegistroPage } from '../pages/registro/registro';
-import { DashboardPage } from '../pages/dashboard/dashboard';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { LoginService } from '../providers/login-service';
-import { UsersService } from '../providers/users-service';
+import { UsersService } from './users.service';
+
+const appRoutes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
-    MyApp,
-    LoginPage,
-    RegistroPage,
-    DashboardPage
+    AppComponent,
+    LoginComponent,
+    RegistroComponent,
+    DashboardComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    LoginPage,
-    RegistroPage,
-    DashboardPage
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    MaterialModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: LoginService, useClass: LoginService},
-    {provide: UsersService, useClass: UsersService}
-  ]
+    { provide: UsersService, useClass: UsersService }
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
