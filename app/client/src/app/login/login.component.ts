@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { UsersService } from '../users.service';
-import { Subscription } from 'rxjs/Subscription';
+import { HeaderService } from '../header.service';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +15,18 @@ export class LoginComponent implements OnInit {
   loginState: boolean = false;
   loginStateSubscription: Subscription;
 
-  constructor( private usersService: UsersService, private router: Router ) {
-    console.log("constructor", this.loginState);
-  }
+  user: any = {};
+
+  constructor(
+    private users: UsersService,
+    private header: HeaderService,
+    private router: Router ) {}
 
   ngOnInit() {
-    this.loginStateSubscription = this.usersService.getloginState()
+    console.log("init login");
+    this.header.setTitulo("Login");
+    this.header.setBack(false, []);
+    this.loginStateSubscription = this.users.getloginState()
     .subscribe(loginState => this.subscribeLoginState(loginState));
   }
 
@@ -28,11 +35,26 @@ export class LoginComponent implements OnInit {
     if (this.loginState) {
       this.router.navigate(['/dashboard']);
     }
-    console.log("loggin state en loginComponent", this.loginState);
+  }
 
+  public validForm(): boolean {
+    if (!this.user || this.user == {}) { return false; }
+    if ( this.user.username && this.user.password ){
+      return true;
+    }
+    return false;
+  };
+
+  public onClickLogin(user: any): void {
+    this.users.doLogin(user);
+  }
+
+  public onClickRegistarse() {
+    this.router.navigate(['/registro']);
   }
 
   ngOnDestroy() {
+    console.log("destroy login");
     this.loginStateSubscription.unsubscribe();
   }
 

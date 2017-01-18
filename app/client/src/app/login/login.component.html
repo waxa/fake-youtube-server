@@ -1,13 +1,7 @@
-<md-toolbar color="primary">
-  <div class="full-width text-center">
-    Aqui va un titulo
-  </div>
-</md-toolbar>
-
 <md-grid-list cols="3" rowHeight="100px">
   <md-grid-tile colspan="2" rowspan="2"></md-grid-tile>
   <md-grid-tile colspan="1" rowspan="1">
-    <button md-raised-button class="half-width" color="accent">Registrarse</button>
+    <button md-raised-button class="half-width button-50" color="accent" (click)="onClickRegistarse()">Registrarse</button>
   </md-grid-tile>
   <md-grid-tile colspan="1" rowspan="1"></md-grid-tile>
 
@@ -15,7 +9,7 @@
 
   <md-grid-tile colspan="1">
     <md-input-container class="full-width">
-      <textarea md-input placeholder="Username"></textarea>
+      <input md-input placeholder="Username" [(ngModel)]="user.username"/>
     </md-input-container>
   </md-grid-tile>
 
@@ -25,7 +19,7 @@
 
   <md-grid-tile colspan="1">
     <md-input-container class="full-width">
-      <textarea md-input placeholder="Password"></textarea>
+      <input md-input placeholder="Password" type="password" [(ngModel)]="user.password"/>
     </md-input-container>
   </md-grid-tile>
 
@@ -34,7 +28,7 @@
   <md-grid-tile colspan="1"></md-grid-tile>
 
   <md-grid-tile colspan="1">
-    <button md-raised-button class="full-width" color="primary">Login</button>
+    <button md-raised-button class="full-width button-50" [disabled]="!validForm()" color="primary" (click)="onClickLogin(user)">Login</button>
   </md-grid-tile>
 
   <md-grid-tile colspan="1"></md-grid-tile>

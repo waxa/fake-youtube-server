@@ -24,7 +24,7 @@ function init (app) {
 
   function getUsers (req, res) {
     console.log("GET /users");
-    findUser(req.user, "username tasks dayStartHour dayStartMin", function (err, user) {
+    findUser(req.user, "username password tasks dayStartHour dayStartMin", function (err, user) {
       if (err || !user) { res.sendStatus(500); }
       else { res.status(200).json(user); }
     });
@@ -62,6 +62,7 @@ function init (app) {
   };
 
   app.get('/api/users', passport.authMiddleware(), getUsers);
+  // app.get('/api/users', getUsers);
   app.get('/api/users/:username',  getUsersUsername);
   app.post('/api/users', postUsers);
 };

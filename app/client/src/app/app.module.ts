@@ -12,12 +12,15 @@ import { RegistroComponent } from './registro/registro.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { UsersService } from './users.service';
+import { HeaderService } from './header.service';
+import { HeaderComponent } from './header/header.component';
+
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -25,7 +28,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     RegistroComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    { provide: UsersService, useClass: UsersService }
+    { provide: UsersService, useClass: UsersService },
+    { provide: HeaderService, useClass: HeaderService }
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,11 @@ const mongooseUri = require('./options').mongoUri;
 
 const app = express();
 
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  credentials: true
+};
+
 //setUp database and models
 require('./database')(mongoose, mongooseUri);
 
@@ -15,9 +20,7 @@ require('./users').model(mongoose);
 //setUp middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
-app.use(cors());
-// app.use('/', express.static(__dirname + '/../client/www'));
-
+app.use(cors(corsOptions));
 
 //setUp auth with passport
 require('./auth').init(app, mongooseUri);
@@ -28,5 +31,8 @@ require('./middleware').init(app);
 //setUp routes
 require('./auth').route(app); // /login
 require('./users').route(app); // /users
+
+//default route
+// app.use('/*', express.static(__dirname + '/../client/dist'));
 
 module.exports = app;
