@@ -32,7 +32,4 @@ require('./middleware').init(app);
 require('./auth').route(app); // /login
 require('./users').route(app); // /users
 
-//default route
-// app.use('/*', express.static(__dirname + '/../client/dist'));
-
 module.exports = app;
