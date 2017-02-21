@@ -2,6 +2,8 @@ function init (app) {
   const passport = require('passport');
   const User = require('mongoose').model('User');
 
+  const shell = require('shelljs');
+
   function isUser(userToFind, callback) {
     User.findOne( userToFind, "username")
     .lean()
@@ -61,8 +63,15 @@ function init (app) {
     })
   };
 
-  app.get('/api/users', passport.authMiddleware(), getUsers);
+  // function shellPrueba (req, res) {
+  //   console.log("GET /api/waxa")
+  //   console.log("desde node", shell.exec('node --version', {silent:true}).stdout);
+  //   res.status(200).send("waxa");
+  // };
+
+  // app.get('/api/waxa', shellPrueba)
   // app.get('/api/users', getUsers);
+  app.get('/api/users', passport.authMiddleware(), getUsers);
   app.get('/api/users/:username',  getUsersUsername);
   app.post('/api/users', postUsers);
 };
