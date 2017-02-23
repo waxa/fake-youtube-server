@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongooseUri = require('./options').mongoUri;
+const passport = require('passport');
 
 const app = express();
 
@@ -31,5 +32,7 @@ require('./middleware').init(app);
 //setUp routes
 require('./auth').route(app); // /login
 require('./users').route(app); // /users
+
+app.use('/media', passport.authMiddleware(), express.static('media'));
 
 module.exports = app;
